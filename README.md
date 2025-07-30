@@ -47,34 +47,34 @@ This repository is a personal log of my journey into the world of Machine Learni
 
 11. Handling Bad Lines (on_bad_lines)
   If a line has a format mismatch (extra or missing delimiters), we can use on_bad_lines='skip' to skip those rows.
+ 
+    Alternatives:
 
-   Alternatives:
+    warn – just shows a warning
 
-   warn – just shows a warning
-
-   error – default behavior, throws an error
+    error – default behavior, throws an error
 
 12. Specifying Column Data Types (dtype)
    Example: dtype={'target': int} loads the target column explicitly as integer type.
 
-   This is useful for machine learning tasks or memory optimization.
+    This is useful for machine learning tasks or memory optimization.
 
 13. Handling Date Columns (parse_dates)
    Example: parse_dates=['date'] converts the date column to datetime64[ns] type.
 
-   Using proper datetime instead of object strings is important for filtering and extraction.
+    Using proper datetime instead of object strings is important for filtering and extraction.
 
 14. Viewing DataFrame Metadata (.info())
    The .info() method shows a summary of the DataFrame: column names, non-null counts, and data types.
 
-   In the notebook, .info() was used to compare data types before and after parsing or type conversion.
+    In the notebook, .info() was used to compare data types before and after parsing or type conversion.
 
 15. Handling Missing Values (na_values)
    The na_values=['Male'] parameter treats specific values (like 'Male') as missing (NaN).
 
-   Useful when custom placeholder values are used to indicate missing data.
+    Useful when custom placeholder values are used to indicate missing data.
 
 16. Loading Large Datasets in Chunks (chunksize)
    Using pd.read_csv(..., chunksize=5000) loads the data in smaller DataFrame chunks.
 
-   Each chunk is processed through a for loop — a memory-efficient method for working with large files.
+    Each chunk is processed through a for loop — a memory-efficient method for working with large files.
