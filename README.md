@@ -4,73 +4,77 @@ This repository is a personal log of my journey into the world of Machine Learni
 # 01 Working with csv
 
 1. Google Drive Mounting
-Colab me drive.mount('/content/drive') use karke Google Drive ko notebook se attach kiya gaya, jisse datasets accessible ho gaye.
+  In Colab, drive.mount('/content/drive') is used to attach Google Drive to the notebook, so that datasets become accessible.
 
 2. File Path Variables
-Datasets ke file paths ko variables me store kiya gaya (e.g., aug_train, BX_books, IPL, Movie, zomato) taaki baar-baar path likhne se bach sake.
+  The file paths of the datasets are stored in variables (e.g., aug_train, BX_books, IPL, Movie, zomato) so that we don’t have to write the path again and again.
 
 3. Basic CSV Loading
-Pandas ka read_csv() function use kar ke datasets load kiye gaye.
+  Pandas' read_csv() function is used to load datasets.
 
-Agar default utf‑8 encoding se error aaye (UnicodeDecodeError), to encoding='latin-1' specify kiya gaya.
+  If a UnicodeDecodeError occurs due to the default utf-8 encoding, then encoding='latin-1' is specified to fix it.
 
 4. Separator (sep) Parameter
-Agar file comma ke alawa kisi aur delimiter se separated ho (e.g., semicolon ; ya tab \t), to sep=';' ya sep='\t' specify kiya gaya.
+  If the file is separated by something other than a comma (like semicolon ; or tab \t), then we specify sep=';' or sep='\t'.
 
 5. Header and Column Names
-header parameter use karke CSV file ke unwanted header rows skip kiye gaye.
+  The header parameter is used to skip unwanted header rows from the CSV file.
 
-names parameter se custom column names assign kiye gaye agar header row missing ya incorrect ho.
+  The names parameter is used to assign custom column names if the header row is missing or incorrect.
 
 6. Index Column (index_col)
-index_col='enrollee_id' parameter se read karte waqt enrollee_id column ko DataFrame ka index set kiya gaya, taaki row operations simpler ho jaye.
+  The index_col='enrollee_id' parameter is used to set the enrollee_id column as the DataFrame index while reading, to make row operations simpler.
 
 7. Dropping Columns or Rows
-drop('0', axis=1) se unnecessary column (label '0') remove kiya gaya.
+  Using drop('0', axis=1) removes an unnecessary column labeled '0'.
 
-drop(29725, axis=0) se specific row (index 29725) remove ki gai.
+  Using drop(29725, axis=0) removes a specific row with index 29725.
 
-axis=1 ka matlab column, axis=0 ka matlab row.
+  axis=1 means column, axis=0 means row.
 
 8. usecols Parameter
-usecols=['enrollee_id','gender','education_level'] se sirf specified columns load kiye gaye.
+  Using usecols=['enrollee_id', 'gender', 'education_level'] loads only the specified columns.
 
-Ye memory efficient hai jab aap full dataset use nahi kar rhe.
+  This is memory-efficient when you are not using the full dataset.
 
 9. squeeze() Method
-Single-column DataFrame ko directly Pandas Series (ya scalar) me convert karne ke liye squeeze() method use kiya gaya.
+  The squeeze() method is used to convert a single-column DataFrame directly into a Pandas Series (or scalar).
 
 10. nrows and skiprows Parameters
-nrows=100: Sirf first 100 rows read karega. Useful for previewing large datasets.
+  nrows=100: Reads only the first 100 rows. Useful for previewing large datasets.
 
-skiprows=10: First 10 rows skip karega, aur uske baad data read karega.
+  skiprows=10: Skips the first 10 rows and starts reading from the next row.
 
 11. Handling Bad Lines (on_bad_lines)
-Agar kisi line ka format mismatched ho (extra/missing delimiters), to on_bad_lines='skip' lagakar un rows ko skip kiya gaya.
+  If a line has a format mismatch (extra or missing delimiters), we can use on_bad_lines='skip' to skip those rows.
 
-Alternatives: warn (just warn) or error (default).
+  Alternatives:
+
+  warn – just shows a warning
+
+  error – default behavior, throws an error
 
 12. Specifying Column Data Types (dtype)
-Example: dtype={'target': int} se target column explicitly integer type me load hua.
+  Example: dtype={'target': int} loads the target column explicitly as integer type.
 
-Useful for ML tasks or memory optimization.
+  This is useful for machine learning tasks or memory optimization.
 
 13. Handling Date Columns (parse_dates)
-Example: parse_dates=['date'] se date column ko datetime64[ns] type me convert kiya gaya.
+  Example: parse_dates=['date'] converts the date column to datetime64[ns] type.
 
-object type strings ke bajaye proper datetime use karna filtering aur extraction ke liye zaruri hota hai.
+  Using proper datetime instead of object strings is important for filtering and extraction.
 
 14. Viewing DataFrame Metadata (.info())
-.info() method se DataFrame me columns ke names, non-null count, and data types ka summary milta hai.
+  The .info() method shows a summary of the DataFrame: column names, non-null counts, and data types.
 
-Notebook me .info() ka use karke differences in dtypes (before/after parsing or dtype conversion) highlight kiya gaya.
+  In the notebook, .info() was used to compare data types before and after parsing or type conversion.
 
 15. Handling Missing Values (na_values)
-na_values=['Male'] parameter ke through specific values (jaise 'Male') ko missing (NaN) treat karwaya gaya.
+  The na_values=['Male'] parameter treats specific values (like 'Male') as missing (NaN).
 
-Useful jab custom placeholder values missing data indicate karte ho.
+  Useful when custom placeholder values are used to indicate missing data.
 
 16. Loading Large Datasets in Chunks (chunksize)
-pd.read_csv(..., chunksize=5000) se data ko smaller DataFrame chunks me load kiya gaya.
+  Using pd.read_csv(..., chunksize=5000) loads the data in smaller DataFrame chunks.
 
-For loop ke through each chunk process kiya gaya — memory-efficient strategy for large files.
+  Each chunk is processed through a for loop — a memory-efficient method for working with large files.
